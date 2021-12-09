@@ -3,7 +3,7 @@ const routes = express.Router();
 
 
 //Petición GET //
-routes.get('/listahabitantes', (req, res)=>{
+routes.get('/', (req, res)=>{
     req.getConnection((error, conn)=>{
         if(error) res.status(500).send('Error de servidor');
 
@@ -19,7 +19,7 @@ routes.get('/listahabitantes', (req, res)=>{
 
 
 //Petición Get un solo habitante //
-routes.get('/habitante/:idhabitante',(req,res)=>{
+routes.get('/:idhabitante',(req,res)=>{
     req.getConnection((error,conn)=>{
         let gID = req.params.idhabitante;
         let qr = `SELECT * FROM habitantes where idhabitante = ${gID}`;
@@ -35,7 +35,7 @@ routes.get('/habitante/:idhabitante',(req,res)=>{
 
 //Petición POST agregar un nuevo habitante//
 
-routes.post('/nuevohabitante',(req,res)=>{
+routes.post('/',(req,res)=>{
     console.log(req.body,'createdata');
 
     req.getConnection((err, conn)=>{
@@ -68,7 +68,7 @@ routes.post('/nuevohabitante',(req,res)=>{
 });
 
 // Petición PUT actualizar un habitante //
-routes.put('/actualizarhab/:idhabitante',(req,res)=>{
+routes.put('/:idhabitante',(req,res)=>{
     req.getConnection((err, conn)=>{
         console.log(req.body,'updatedata');
 
@@ -99,7 +99,7 @@ routes.put('/actualizarhab/:idhabitante',(req,res)=>{
 
 
 //Petición Delete //
-routes.delete('/eliminarhab/:idhabitante',(req,res)=>{
+routes.delete('/:idhabitante',(req,res)=>{
     req.getConnection((error,conn)=>{
         let qID = req.params.idhabitante;
         let qr = `DELETE from habitantes where idhabitante='${qID}'`;
